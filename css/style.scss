@@ -1,0 +1,162 @@
+//fonts
+
+@font-face {
+  font-family: 'proxima_nova_ltlight';
+  src: url('../fonts/proxima_nova_light-webfont.woff2') format('woff2'),
+       url('../fonts/proxima_nova_light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_novabold';
+  src: url('../fonts/proximanova-bold-webfont.woff2') format('woff2'),
+       url('../fonts/proximanova-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_novaregular';
+  src: url('../fonts/proximanova-regular-webfont.woff2') format('woff2'),
+       url('../fonts/proximanova-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// контейнер по умолчанию. Отступ между колонками
+$container: 1000px;
+$colGups: 15px;
+
+// контрольные точки
+$breakpoints: (
+  xs: 0,
+  sm: 575px,
+  md: 768px,
+  lg: 1025px
+);
+
+$columns: 12;
+
+@each $breakpoint in $breakpoints {
+  $name: nth($breakpoint, 1);
+  $size: nth($breakpoint, 2);
+
+  @media only screen and (min-width: $size) {
+    [class*="col-#{$name}"] {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      padding-right: $colGups;
+      padding-left: $colGups;
+    }
+    @for $i from 1 through $columns {
+      .col-#{$name}-#{$i} {
+        flex-basis: 100% / $columns * $i;
+        max-width: 100% / $columns * $i;
+      }
+    }
+    @for $i from 1 through $columns {
+      .col-#{$name}-offset-#{$i} {
+        margin-left: 100% / $columns * $i;
+      }
+    }
+  }
+}
+
+//===========  mixins start ===========//
+
+// columns
+$columns: 12;
+$col: $columns;
+
+@mixin col($col, $columns) {
+  width: percentage($col/$columns);
+}
+
+//===========  mixins end ===========//
+
+@mixin col-create() {
+  @while $col > 0 {
+    .col-#{$col} {
+      @include col($col, $columns);
+    }
+
+    $col: $col - 1;
+  }
+}
+
+body {
+  background-color: #f7f7f7;
+  font-family: 'proxima_novaregular';
+  box-sizing: border-box;
+}
+
+
+.container {
+  max-width: $container;
+  width: 100%;
+  margin: 0 auto;
+}
+
+a {
+  color: inherit;
+}
+// layout
+
+.row {
+  display: flex;
+  flex-wrap: no-wrap;
+  justify-content: space-around;
+}
+
+[class^="col"] {
+  padding-left: $colGups;
+  padding-right: $colGups;
+  width: 100%;
+  min-height: 1px;
+  margin-left: -12px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #a5aab0;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #a5aab0;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #a5aab0;
+}
+
+//section hero with table
+
+.hero {
+  font-family: 'proxima_novabold';
+  &__title {
+    font-size: 30px;
+    text-align: center;
+    line-height: 4;
+  }
+
+  &__table {
+    width: 100%;
+    border-spacing: 0 6px;
+  }
+
+  &__row {
+    background-color: #fff;
+    &--uppercase {
+      text-transform: uppercase;
+
+    }
+  }
+
+  &__item {
+    height: 45px;
+  }
+}
