@@ -160,6 +160,7 @@ h1, h2, h3, p, span {
     @media screen and (max-width: 768px) {
       table-layout: auto;
     }
+
   }
 
   &__row {
@@ -179,8 +180,7 @@ h1, h2, h3, p, span {
   &__item {
     height: 45px;
 
-    [for="symbol"],
-    span {
+    &-label, &-arrow {
       position: relative;
       &:after {
         content: "";
@@ -327,11 +327,6 @@ h1, h2, h3, p, span {
     padding-bottom: 0.4em;
     font-size: 14px;
     outline: none;
-
-    &:hover {
-      color: #6d6e71;
-      border-bottom: 2px solid #dbdcdd;
-    }
   }
 
   [type=reset] {
@@ -385,4 +380,66 @@ h1, h2, h3, p, span {
     }
   }
 
+}
+
+// checkbox
+
+.check {
+  padding-left: 60px;
+  position: relative;
+}
+
+.check__input {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.check__box {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height:18px;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid #c1c2c4;
+  background-color: #fff;
+}
+
+/* Checked */
+
+.check__input:checked + .check__box {
+  background-color: #d11515;
+  background-image: url('../img/tick.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+/* Focused */
+
+.check__input:active + .check__box {
+  background-color: #d11515;
+  background-image: url('../img/tick.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border: none;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+.check__input:focus + .check__box,
+.check__input:hover + .check__box {
+  background-color: #c1c2c4;
+  border: none;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Disabled */
+
+.check__input:checked:disabled + .check__box {
+  background-color: #c1c2c4;
 }

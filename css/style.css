@@ -582,13 +582,11 @@ h1, h2, h3, p, span {
   height: 45px;
 }
 
-.hero__item [for="symbol"],
-.hero__item span {
+.hero__item-label, .hero__item-arrow {
   position: relative;
 }
 
-.hero__item [for="symbol"]:after,
-.hero__item span:after {
+.hero__item-label:after, .hero__item-arrow:after {
   content: "";
   position: absolute;
   right: -1.5em;
@@ -765,11 +763,6 @@ h1, h2, h3, p, span {
   outline: none;
 }
 
-.contact select:hover {
-  color: #6d6e71;
-  border-bottom: 2px solid #dbdcdd;
-}
-
 .contact [type=reset] {
   width: 128px;
   border: 2px solid #576b87;
@@ -821,5 +814,62 @@ h1, h2, h3, p, span {
 .contact [type=submit]:active {
   background-color: #c1c1be;
   color: #fff;
+}
+
+.check {
+  padding-left: 60px;
+  position: relative;
+}
+
+.check__input {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.check__box {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid #c1c2c4;
+  background-color: #fff;
+}
+
+/* Checked */
+.check__input:checked + .check__box {
+  background-color: #d11515;
+  background-image: url("../img/tick.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+/* Focused */
+.check__input:active + .check__box {
+  background-color: #d11515;
+  background-image: url("../img/tick.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border: none;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+.check__input:focus + .check__box,
+.check__input:hover + .check__box {
+  background-color: #c1c2c4;
+  border: none;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Disabled */
+.check__input:checked:disabled + .check__box {
+  background-color: #c1c2c4;
 }
 /*# sourceMappingURL=style.css.map */
